@@ -14,12 +14,14 @@ var film string
 
 func main() {
 	film = strings.ReplaceAll(film, "\\n", "\n")
+	film = strings.ReplaceAll(film, "\\\\", "\\")
+	film = strings.ReplaceAll(film, "\\'", "'")
 	frames := strings.Split(film, "\n")
 	tm.Clear()
 
 	speed := time.Millisecond * 64
 
-	for index := 0; index < len(frames); index += 14 {
+	for index := 0; index+13 < len(frames); index += 14 {
 		tm.Clear()
 		tm.MoveCursor(1, 1)
 		frameControl, err := strconv.Atoi(frames[index])
